@@ -1,3 +1,8 @@
+# example zip files
+./*.zip
+./sources/*
+./assets/*
+
 # Logs
 logs
 *.log
