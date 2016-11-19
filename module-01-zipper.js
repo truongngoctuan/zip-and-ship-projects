@@ -3,7 +3,7 @@ var fs = require('fs');
 var archiver = require('archiver');
 
 //https://mushfiq.me/2014/08/21/node-js-script-to-make-a-zip-archive/
-exports.exec = function zipProject(dirname, zippedName) {
+exports.exec = function zipProject(dirname, zippedName, includeGlobs) {
 
   // create a file to stream archive data to.
   var output = fs.createWriteStream(zippedName);
@@ -40,10 +40,14 @@ exports.exec = function zipProject(dirname, zippedName) {
   // archive.file('file1.txt', { name: 'file4.txt' });
 
   // append files from a directory
-  archive.directory(dirname + "/");
+  // archive.directory(dirname + "/");
 
   // // append files from a glob pattern
-  // archive.glob('subdir/*.txt');
+  includeGlobs.forEach(function(val) {
+    archive.glob(val, {
+      cwd: dirname
+    });
+  });
 
   // finalize the archive (ie we are done appending files but streams have to finish yet)
   archive.finalize();
