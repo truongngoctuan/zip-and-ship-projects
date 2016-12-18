@@ -1,6 +1,7 @@
 // require modules
 var fs = require('fs');
 var archiver = require('archiver');
+var pretty = require('prettysize');
 
 //https://mushfiq.me/2014/08/21/node-js-script-to-make-a-zip-archive/
 exports.exec = function zipProject(dirname, zippedName, includeGlobs) {
@@ -13,8 +14,7 @@ exports.exec = function zipProject(dirname, zippedName, includeGlobs) {
 
   // listen for all archive data to be written
   output.on('close', function() {
-    console.log(archive.pointer() + ' total bytes');
-    console.log('archiver has been finalized and the output file descriptor has closed.');
+    console.log("zip file (" + pretty(archive.pointer()) + ") " + zippedName);
   });
 
   // good practice to catch this error explicitly

@@ -4,7 +4,8 @@
   "description": "This module help to zip a folder with some excludes",
   "main": "zip-folder-excludes-list.js",
   "dependencies": {
-    "jsonfile": "^2.4.0"
+    "jsonfile": "^2.4.0",
+    "prettysize": "0.0.3"
   },
   "devDependencies": {},
   "scripts": {
