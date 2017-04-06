@@ -3,6 +3,9 @@
 sources/*
 assets/*
 
+# private files
+folder-list.json
+
 # Logs
 logs
 *.log
