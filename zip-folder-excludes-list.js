@@ -1,13 +1,10 @@
 // require modules
-//var fs = require('fs');
 var jsonfile = require('jsonfile');
 var zipper = require('./module-01-zipper.js');
+var package_handler = require('./module-01-02-pacgakes-sharer');
 
 //get params
 var __dirname = process.argv[2];
-// process.argv.forEach(function (val, idx) {
-//   console.log(val + " : " + idx);
-// });
 
 //get configuration object from a config file
 var configObject = {};
@@ -24,5 +21,7 @@ function zipAndShip(configObject) {
       projectObject.source, 
       projectObject.filename, 
       projectObject.includes);
+    
+    package_handler.exec(projectObject.source, 'assets');
   });
 }
