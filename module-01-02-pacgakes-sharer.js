@@ -38,16 +38,12 @@ function getFiles (srcpath) {
 }
 
 function getFolderNameWithoutPath(folderPath) { //TODO: path.basename ?
-    var forwardflashIdx = folderPath.lastIndexOf('\\');
-    if (forwardflashIdx != -1) {
-        return folderPath.substr(forwardflashIdx + 1);
-    }
-    return folderPath;
+    return path.basename(folderPath);
 }
 
 function zipThatFolderForMe(folderName, outFolder) {
     var fileExt = 'zip';
-  var zippedName = getFolderNameWithoutPath(folderName) + '.' + fileExt;
+  var zippedName = path.basename(folderName) + '.' + fileExt;
   console.log('folderName = ' + folderName);
   //console.log('zippedName = ' + zippedName);
   //console.log('out file = ' + path.join(outFolder, zippedName));
