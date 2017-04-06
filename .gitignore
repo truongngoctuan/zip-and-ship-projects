@@ -1,5 +1,6 @@
 # example zip files
-./*.zip
+*.zip
+*.tar
 sources/*
 assets/*
 
