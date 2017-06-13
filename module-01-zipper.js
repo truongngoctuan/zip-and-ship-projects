@@ -9,16 +9,19 @@ exports.exec = function zipProject(dirname, zippedName, includeGlobs) {
   // create a file to stream archive data to.
   var output = fs.createWriteStream(zippedName);
   var archive = archiver('zip', {
-      store: true // Sets the compression method to STORE.
+    //store: true, // Sets the compression method to STORE.
+    zlib: {
+      level: 9
+    }
   });
 
   // listen for all archive data to be written
-  output.on('close', function() {
+  output.on('close', function () {
     console.log("zip file (" + pretty(archive.pointer()) + ") " + zippedName);
   });
 
   // good practice to catch this error explicitly
-  archive.on('error', function(err) {
+  archive.on('error', function (err) {
     throw err;
   });
 
@@ -43,7 +46,7 @@ exports.exec = function zipProject(dirname, zippedName, includeGlobs) {
   // archive.directory(dirname + "/");
 
   // // append files from a glob pattern
-  includeGlobs.forEach(function(val) {
+  includeGlobs.forEach(function (val) {
     archive.glob(val, {
       cwd: dirname
     });
